@@ -18,7 +18,7 @@
   --gold: #d4af37;
   --gold-light: #f5d76e;
   --gold-soft: #c9a227;
-  --gold-glow: rgba(212, 175, 55, 0.4);
+  --gold-glow: rgba(212, 175, 55, 0.5);
   --bg: #0a0a0a;
   --bg-2: #141414;
   --card: rgba(20, 18, 12, 0.65);
@@ -45,28 +45,31 @@ body {
 /* ================= Custom Cursor ================= */
 .cursor {
   position: fixed;
-  width: 38px; height: 38px;
+  width: 34px; height: 34px;
   border: 2px solid var(--gold);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s;
   transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
+  box-shadow: 0 0 14px var(--gold-glow), inset 0 0 10px rgba(212,175,55,0.2);
+  background: rgba(212,175,55,0.05);
 }
 .cursor-dot {
   position: fixed;
   width: 6px; height: 6px;
-  background: var(--gold);
+  background: var(--gold-light);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 12px var(--gold);
 }
 .cursor.grow {
-  transform: translate(-50%, -50%) scale(1.8);
-  background: rgba(212, 175, 55, 0.15);
+  transform: translate(-50%, -50%) scale(1.7);
+  background: rgba(212, 175, 55, 0.18);
   border-color: var(--gold-light);
+  box-shadow: 0 0 24px var(--gold-glow);
 }
 
 /* ================= Animated Background ================= */
@@ -88,6 +91,7 @@ body {
     linear-gradient(90deg, rgba(212,175,55,0.045) 1px, transparent 1px);
   background-size: 46px 46px;
   mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
 }
 .orb {
   position: absolute;
@@ -284,12 +288,15 @@ body {
 }
 
 .typed {
-  font-size: 13px;
+  font-size: 13.5px;
   color: var(--gold-light);
-  min-height: 18px;
+  min-height: 20px;
   letter-spacing: 0.5px;
-  opacity: 0.9;
+  opacity: 1;
   margin: 0;
+  display: block;
+  visibility: visible;
+  text-shadow: 0 0 8px rgba(212,175,55,0.4);
 }
 .typed::after {
   content: '|';
@@ -343,7 +350,7 @@ body {
   display: block;
   margin-top: 8px;
   font-family: 'Reem Kufi', sans-serif;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--gold-light);
   letter-spacing: 0.5px;
@@ -547,7 +554,7 @@ body {
   .avatar-wrap { width: 120px; height: 120px; margin-top: -62px; }
   .name { font-size: 26px; }
   .features { gap: 8px; padding: 0 16px; }
-  .feature .value { font-size: 15px; }
+  .feature .value { font-size: 14px; }
   .feature .icon { font-size: 17px; }
   .quotes { margin: 0 16px; padding: 16px; }
   .quotes p { font-size: 14px; }
@@ -602,7 +609,7 @@ body {
   <section class="features">
     <div class="feature">
       <i class="fas fa-location-dot icon"></i>
-      <span class="value">مصر</span>
+      <span class="value">مصر 🇪🇬</span>
       <span class="label">البلد</span>
     </div>
     <div class="feature">
@@ -648,4 +655,97 @@ body {
     <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    <a href="#" title="Telegram"><i class
+    <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+    <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  </div>
+
+  <!-- Footer -->
+  <p class="footer">صُنع بـ <i class="fas fa-heart"></i> لـ ɖƲιιȻ</p>
+
+</main>
+
+<script>
+/* ============ Custom Cursor ============ */
+const cursor = document.querySelector('.cursor');
+const dot = document.querySelector('.cursor-dot');
+let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+let cx = mx, cy = my;
+
+// نحدد موقع البداية عشان يبان من أول لحظة
+cursor.style.left = cx + 'px';
+cursor.style.top  = cy + 'px';
+dot.style.left = mx + 'px';
+dot.style.top  = my + 'px';
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  dot.style.left = mx + 'px';
+  dot.style.top  = my + 'px';
+});
+function animateCursor() {
+  cx += (mx - cx) * 0.18;
+  cy += (my - cy) * 0.18;
+  cursor.style.left = cx + 'px';
+  cursor.style.top  = cy + 'px';
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('a, .video-box, .feature, .avatar').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+});
+
+/* ============ Mouse-Follow Highlight ============ */
+const card = document.getElementById('card');
+card.addEventListener('mousemove', e => {
+  const r = card.getBoundingClientRect();
+  card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+  card.style.setProperty('--my', (e.clientY - r.top)  + 'px');
+});
+
+/* ============ Typing Effect ============ */
+const typedEl = document.getElementById('typed');
+const lines = [
+  'مرحبًا بيك في بروفايلي ✨',
+  'ستايلش الشات 🐍',
+  'صانع محتوى • مبدع • مميز',
+];
+let li = 0, ci = 0, deleting = false;
+
+function typeLoop() {
+  const current = lines[li];
+  if (!deleting) {
+    typedEl.textContent = current.slice(0, ++ci);
+    if (ci === current.length) {
+      deleting = true;
+      return setTimeout(typeLoop, 1800);
+    }
+  } else {
+    typedEl.textContent = current.slice(0, --ci);
+    if (ci === 0) {
+      deleting = false;
+      li = (li + 1) % lines.length;
+    }
+  }
+  setTimeout(typeLoop, deleting ? 45 : 85);
+}
+// نبدأ الكتابة فورًا بعد 300ms
+setTimeout(typeLoop, 300);
+
+/* ============ المزاج بيتغير حسب اليوم ============ */
+const moods = [
+  { text: 'سعيدة', icon: 'fa-face-smile' },
+  { text: 'رايقة', icon: 'fa-face-grin-stars' },
+  { text: 'مبسوطة', icon: 'fa-face-laugh-beam' },
+  { text: 'حالمة', icon: 'fa-face-grin-hearts' },
+  { text: 'متحمسة', icon: 'fa-face-grin-tongue-wink' },
+];
+const moodIndex = new Date().getDate() % moods.length;
+document.getElementById('moodText').textContent = moods[moodIndex].text;
+const moodIconEl = document.getElementById('moodIcon');
+moodIconEl.className = 'fas ' + moods[moodIndex].icon + ' icon';
+</script>
+
+</body>
+</html>
