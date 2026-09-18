@@ -6,7 +6,7 @@
 <title>ɖƲιιȻ</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Reem+Kufi:wght@400;600;700&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
 /* ================= Base ================= */
@@ -15,15 +15,16 @@
   font-family: 'Tajawal', sans-serif;
 }
 :root {
-  --pink: #ff2e88;
-  --pink-soft: #ff77b0;
-  --purple: #9d4edd;
-  --cyan: #4cc9f0;
-  --bg: #07070c;
-  --card: rgba(18, 14, 24, 0.55);
-  --border: rgba(255, 46, 136, 0.22);
-  --text: #f2e9ef;
-  --dim: #9b8d99;
+  --gold: #d4af37;
+  --gold-light: #f5d76e;
+  --gold-soft: #c9a227;
+  --gold-glow: rgba(212, 175, 55, 0.4);
+  --bg: #0a0a0a;
+  --bg-2: #141414;
+  --card: rgba(20, 18, 12, 0.65);
+  --border: rgba(212, 175, 55, 0.28);
+  --text: #f5efe0;
+  --dim: #a89b7b;
 }
 
 html, body { overflow-x: hidden; }
@@ -39,14 +40,13 @@ body {
   position: relative;
   cursor: none;
 }
-/* cursor only on desktop */
 @media (max-width: 768px) { body { cursor: auto; } .cursor, .cursor-dot { display: none; } }
 
 /* ================= Custom Cursor ================= */
 .cursor {
   position: fixed;
   width: 38px; height: 38px;
-  border: 2px solid var(--pink);
+  border: 2px solid var(--gold);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
@@ -57,7 +57,7 @@ body {
 .cursor-dot {
   position: fixed;
   width: 6px; height: 6px;
-  background: var(--pink);
+  background: var(--gold);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
@@ -65,8 +65,8 @@ body {
 }
 .cursor.grow {
   transform: translate(-50%, -50%) scale(1.8);
-  background: rgba(255,46,136,0.15);
-  border-color: var(--purple);
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--gold-light);
 }
 
 /* ================= Animated Background ================= */
@@ -76,29 +76,29 @@ body {
   z-index: 0;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(157,78,221,0.18), transparent 55%),
-    radial-gradient(ellipse at 80% 90%, rgba(255,46,136,0.15), transparent 55%),
+    radial-gradient(ellipse at 20% 10%, rgba(212,175,55,0.10), transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(212,175,55,0.08), transparent 55%),
     var(--bg);
 }
 .grid-overlay {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 44px 44px;
+    linear-gradient(rgba(212,175,55,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212,175,55,0.045) 1px, transparent 1px);
+  background-size: 46px 46px;
   mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
 }
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.55;
+  filter: blur(110px);
+  opacity: 0.5;
   animation: drift 20s ease-in-out infinite;
 }
-.orb.o1 { width: 400px; height: 400px; background: var(--pink);   top: -120px; right: -80px; }
-.orb.o2 { width: 340px; height: 340px; background: var(--purple); bottom: -100px; left: -80px; animation-delay: -7s; }
-.orb.o3 { width: 260px; height: 260px; background: var(--cyan);   top: 45%; left: 55%; opacity: 0.25; animation-delay: -13s; }
+.orb.o1 { width: 420px; height: 420px; background: var(--gold);   top: -140px; right: -100px; opacity: 0.18; }
+.orb.o2 { width: 360px; height: 360px; background: #8b6f1e; bottom: -120px; left: -100px; animation-delay: -7s; opacity: 0.22; }
+.orb.o3 { width: 280px; height: 280px; background: var(--gold-light);   top: 45%; left: 55%; opacity: 0.10; animation-delay: -13s; }
 @keyframes drift {
   0%,100% { transform: translate(0,0) scale(1); }
   50%     { transform: translate(40px,-40px) scale(1.15); }
@@ -118,8 +118,8 @@ body {
   padding: 0 0 40px;
   overflow: hidden;
   box-shadow:
-    0 30px 80px rgba(0,0,0,0.6),
-    0 0 60px rgba(255,46,136,0.08);
+    0 30px 80px rgba(0,0,0,0.75),
+    0 0 60px rgba(212,175,55,0.06);
   animation: rise 1s cubic-bezier(.2,.9,.3,1.2);
 }
 @keyframes rise {
@@ -127,13 +127,12 @@ body {
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* highlight that follows mouse */
 .card::before {
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(500px circle at var(--mx,50%) var(--my,50%),
-              rgba(255,46,136,0.12), transparent 45%);
+              rgba(212,175,55,0.10), transparent 45%);
   opacity: 0;
   transition: opacity 0.4s;
   pointer-events: none;
@@ -153,16 +152,15 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(7,7,12,0.1) 0%, rgba(7,7,12,0.95) 100%),
-    linear-gradient(120deg, rgba(255,46,136,0.25), rgba(157,78,221,0.25));
+    linear-gradient(180deg, rgba(10,10,10,0.1) 0%, rgba(10,10,10,0.95) 100%),
+    linear-gradient(120deg, rgba(212,175,55,0.25), rgba(139,111,30,0.3));
   mix-blend-mode: multiply;
 }
-/* shimmer line across cover */
 .cover .shimmer {
   position: absolute;
   top: 0; left: -60%;
   width: 60%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.18), transparent);
+  background: linear-gradient(100deg, transparent, rgba(245,215,110,0.25), transparent);
   transform: skewX(-20deg);
   animation: shine 4.5s ease-in-out infinite;
   z-index: 1;
@@ -184,7 +182,7 @@ body {
   position: absolute;
   inset: -6px;
   border-radius: 50%;
-  background: conic-gradient(var(--pink), var(--purple), var(--cyan), var(--pink));
+  background: conic-gradient(var(--gold), var(--gold-light), #8b6f1e, var(--gold));
   animation: spin 6s linear infinite;
   filter: blur(2px);
 }
@@ -209,13 +207,12 @@ body {
   user-select: none; pointer-events: none;
 }
 
-/* online badge */
 .status {
   position: absolute;
   bottom: 10px; left: 6px;
   width: 22px; height: 22px;
   background: #2ecc71;
-  border: 3px solid #120e18;
+  border: 3px solid #14120c;
   border-radius: 50%;
   z-index: 4;
   animation: pulse 2s infinite;
@@ -236,11 +233,11 @@ body {
 }
 
 .name {
-  font-family: 'Reem Kufi', sans-serif;
-  font-size: 30px;
+  font-family: 'Playfair Display', 'Reem Kufi', serif;
+  font-size: 34px;
   font-weight: 700;
-  letter-spacing: 1px;
-  background: linear-gradient(100deg, #fff 20%, var(--pink) 50%, var(--purple) 80%);
+  letter-spacing: 2px;
+  background: linear-gradient(100deg, #f5d76e 20%, #d4af37 50%, #8b6f1e 80%);
   background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -255,13 +252,12 @@ body {
 @keyframes shineText { to { background-position: 220% center; } }
 
 .verify {
-  font-size: 20px;
-  -webkit-text-fill-color: var(--pink);
-  color: var(--pink);
-  filter: drop-shadow(0 0 8px var(--pink));
+  font-size: 22px;
+  -webkit-text-fill-color: var(--gold);
+  color: var(--gold);
+  filter: drop-shadow(0 0 8px var(--gold-glow));
 }
 
-/* ستايلش الشات - تحت الاسم مباشرة */
 .tagline {
   display: flex;
   align-items: center;
@@ -269,27 +265,27 @@ body {
   gap: 8px;
   font-size: 14px;
   color: var(--dim);
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   margin: 0;
-  padding: 6px 16px;
+  padding: 7px 18px;
   border-radius: 20px;
-  background: rgba(255, 46, 136, 0.08);
+  background: rgba(212, 175, 55, 0.07);
   border: 1px solid var(--border);
   transition: all 0.3s ease;
 }
 .tagline:hover {
-  background: rgba(255, 46, 136, 0.15);
-  box-shadow: 0 0 18px rgba(255, 46, 136, 0.25);
+  background: rgba(212, 175, 55, 0.15);
+  box-shadow: 0 0 20px var(--gold-glow);
+  color: var(--gold-light);
 }
 .tagline i {
-  color: var(--pink);
-  filter: drop-shadow(0 0 6px var(--pink));
+  color: var(--gold);
+  filter: drop-shadow(0 0 6px var(--gold-glow));
 }
 
-/* الكتابة المتحركة */
 .typed {
   font-size: 13px;
-  color: var(--cyan);
+  color: var(--gold-light);
   min-height: 18px;
   letter-spacing: 0.5px;
   opacity: 0.9;
@@ -297,56 +293,66 @@ body {
 }
 .typed::after {
   content: '|';
-  color: var(--pink);
+  color: var(--gold);
   animation: blink 1s steps(1) infinite;
   margin-right: 2px;
 }
 @keyframes blink { 50% { opacity: 0; } }
 
-/* ================= Stats ================= */
-.stats {
+/* ================= Feature Boxes ================= */
+.features {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   padding: 0 26px;
-  margin-top: 24px;
+  margin-top: 26px;
 }
-.stat {
-  background: rgba(255,255,255,0.03);
+.feature {
+  background: linear-gradient(150deg, rgba(212,175,55,0.06), rgba(20,18,12,0.4));
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px 8px;
+  border-radius: 18px;
+  padding: 18px 8px 16px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
   position: relative;
   overflow: hidden;
+  cursor: default;
 }
-.stat::before {
+.feature::before {
   content: '';
   position: absolute;
   top: 0; left: -100%;
   width: 100%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--pink), transparent);
-  transition: left 0.5s;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transition: left 0.6s;
 }
-.stat:hover::before { left: 100%; }
-.stat:hover {
-  transform: translateY(-4px);
-  border-color: var(--pink);
-  box-shadow: 0 10px 24px rgba(255,46,136,0.18);
+.feature:hover::before { left: 100%; }
+.feature:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 28px rgba(212,175,55,0.25);
+  background: linear-gradient(150deg, rgba(212,175,55,0.12), rgba(20,18,12,0.5));
 }
-.stat i { color: var(--pink); font-size: 15px; }
-.stat .num {
+
+.feature .icon {
+  font-size: 20px;
+  color: var(--gold);
+  filter: drop-shadow(0 0 8px var(--gold-glow));
+}
+.feature .value {
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
+  font-family: 'Reem Kufi', sans-serif;
   font-size: 18px;
-  font-weight: 800;
-  color: var(--text);
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 0.5px;
 }
-.stat .lbl {
+.feature .label {
   font-size: 11px;
   color: var(--dim);
-  margin-top: 2px;
+  margin-top: 3px;
+  letter-spacing: 1px;
 }
 
 /* ================= Divider ================= */
@@ -365,15 +371,14 @@ body {
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--border), transparent);
 }
-.divider i { color: var(--pink); font-size: 11px; }
+.divider i { color: var(--gold); font-size: 11px; }
 
 /* ================= Quotes ================= */
 .quotes {
   margin: 0 26px;
   padding: 20px 22px;
   border-radius: 20px;
-  background:
-    linear-gradient(135deg, rgba(255,46,136,0.08), rgba(157,78,221,0.08));
+  background: linear-gradient(135deg, rgba(212,175,55,0.07), rgba(139,111,30,0.05));
   border: 1px solid var(--border);
   position: relative;
 }
@@ -383,12 +388,12 @@ body {
   font-weight: 900;
   position: absolute;
   top: -12px; right: 22px;
-  color: var(--pink);
-  background: #120e18;
+  color: var(--gold);
+  background: #14120c;
   padding: 3px 10px;
   border-radius: 10px;
   font-size: 13px;
-  box-shadow: 0 0 14px rgba(255,46,136,0.4);
+  box-shadow: 0 0 14px var(--gold-glow);
 }
 .quotes p {
   font-size: 15.5px;
@@ -397,7 +402,7 @@ body {
   text-align: center;
 }
 .quotes p + p { margin-top: 10px; }
-.quotes p i { color: var(--pink); margin-left: 4px; }
+.quotes p i { color: var(--gold); margin-left: 4px; }
 
 /* ================= Section Title ================= */
 .sec-title {
@@ -415,11 +420,11 @@ body {
   display: grid;
   place-items: center;
   border-radius: 11px;
-  background: linear-gradient(135deg, rgba(255,46,136,0.2), rgba(157,78,221,0.2));
+  background: linear-gradient(135deg, rgba(212,175,55,0.2), rgba(139,111,30,0.15));
   border: 1px solid var(--border);
-  color: var(--pink);
+  color: var(--gold);
   font-size: 14px;
-  box-shadow: 0 0 16px rgba(255,46,136,0.15);
+  box-shadow: 0 0 16px var(--gold-glow);
 }
 .sec-title .line {
   flex: 1;
@@ -435,12 +440,12 @@ body {
   padding: 4px 26px 16px;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
-  scrollbar-color: var(--pink) transparent;
+  scrollbar-color: var(--gold) transparent;
 }
 .videos-scroll::-webkit-scrollbar { height: 6px; }
 .videos-scroll::-webkit-scrollbar-track { background: transparent; }
 .videos-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, var(--pink), var(--purple));
+  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
   border-radius: 10px;
 }
 .video-box {
@@ -460,19 +465,19 @@ body {
   font-weight: 900;
   position: absolute;
   bottom: 8px; right: 8px;
-  color: #fff;
-  background: rgba(255,46,136,0.9);
+  color: #0a0a0a;
+  background: var(--gold);
   width: 28px; height: 28px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   font-size: 12px;
   pointer-events: none;
-  box-shadow: 0 0 12px rgba(255,46,136,0.6);
+  box-shadow: 0 0 12px var(--gold-glow);
 }
 .video-box:hover {
   transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 16px 32px rgba(255,46,136,0.4);
+  box-shadow: 0 16px 32px var(--gold-glow);
 }
 .video-box iframe {
   width: 100%; height: 100%;
@@ -495,7 +500,7 @@ body {
   place-items: center;
   border-radius: 15px;
   color: var(--text);
-  background: rgba(255,255,255,0.035);
+  background: rgba(255,255,255,0.03);
   border: 1px solid var(--border);
   font-size: 18px;
   text-decoration: none;
@@ -506,16 +511,16 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, var(--pink), var(--purple));
+  background: linear-gradient(135deg, var(--gold), var(--gold-soft));
   opacity: 0;
   transition: opacity 0.35s;
 }
 .social a i { position: relative; z-index: 1; }
 .social a:hover {
   transform: translateY(-6px) rotate(-6deg);
-  color: #fff;
+  color: #0a0a0a;
   border-color: transparent;
-  box-shadow: 0 14px 28px rgba(255,46,136,0.45);
+  box-shadow: 0 14px 28px var(--gold-glow);
 }
 .social a:hover::before { opacity: 1; }
 
@@ -527,7 +532,7 @@ body {
   color: var(--dim);
   letter-spacing: 1px;
 }
-.footer i { color: var(--pink); animation: beat 1.4s infinite; }
+.footer i { color: var(--gold); animation: beat 1.4s infinite; }
 @keyframes beat {
   0%,100% { transform: scale(1); }
   25%     { transform: scale(1.25); }
@@ -540,9 +545,10 @@ body {
   .card { border-radius: 24px; }
   .cover { height: 140px; }
   .avatar-wrap { width: 120px; height: 120px; margin-top: -62px; }
-  .name { font-size: 23px; }
-  .stats { gap: 8px; padding: 0 16px; }
-  .stat .num { font-size: 15px; }
+  .name { font-size: 26px; }
+  .features { gap: 8px; padding: 0 16px; }
+  .feature .value { font-size: 15px; }
+  .feature .icon { font-size: 17px; }
   .quotes { margin: 0 16px; padding: 16px; }
   .quotes p { font-size: 14px; }
   .sec-title, .social, .divider { margin-left: 16px; margin-right: 16px; }
@@ -592,22 +598,22 @@ body {
     <p class="typed" id="typed"></p>
   </header>
 
-  <!-- Stats -->
-  <section class="stats">
-    <div class="stat">
-      <i class="fas fa-users"></i>
-      <span class="num">12.4K</span>
-      <span class="lbl">متابع</span>
+  <!-- Feature Boxes -->
+  <section class="features">
+    <div class="feature">
+      <i class="fas fa-location-dot icon"></i>
+      <span class="value">مصر</span>
+      <span class="label">البلد</span>
     </div>
-    <div class="stat">
-      <i class="fas fa-eye"></i>
-      <span class="num">1.2M</span>
-      <span class="lbl">مشاهدة</span>
+    <div class="feature">
+      <i class="fas fa-heart icon"></i>
+      <span class="value">نور</span>
+      <span class="label">أفضل صديقة</span>
     </div>
-    <div class="stat">
-      <i class="fas fa-video"></i>
-      <span class="num">48</span>
-      <span class="lbl">فيديو</span>
+    <div class="feature">
+      <i class="fas fa-face-smile icon" id="moodIcon"></i>
+      <span class="value" id="moodText">سعيدة</span>
+      <span class="label">المزاج</span>
     </div>
   </section>
 
@@ -642,91 +648,4 @@ body {
     <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
     <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
     <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
-    <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-  </div>
-
-  <!-- Footer -->
-  <p class="footer">صُنع بـ <i class="fas fa-heart"></i> لـ ɖƲιιȻ</p>
-
-</main>
-
-<script>
-/* ============ Custom Cursor ============ */
-const cursor = document.querySelector('.cursor');
-const dot = document.querySelector('.cursor-dot');
-let mx = 0, my = 0, cx = 0, cy = 0;
-
-document.addEventListener('mousemove', e => {
-  mx = e.clientX; my = e.clientY;
-  dot.style.left = mx + 'px';
-  dot.style.top  = my + 'px';
-});
-function animateCursor() {
-  cx += (mx - cx) * 0.18;
-  cy += (my - cy) * 0.18;
-  cursor.style.left = cx + 'px';
-  cursor.style.top  = cy + 'px';
-  requestAnimationFrame(animateCursor);
-}
-animateCursor();
-
-document.querySelectorAll('a, .video-box, .stat, .avatar').forEach(el => {
-  el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-  el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-});
-
-/* ============ Mouse-Follow Highlight on Card ============ */
-const card = document.getElementById('card');
-card.addEventListener('mousemove', e => {
-  const r = card.getBoundingClientRect();
-  card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-  card.style.setProperty('--my', (e.clientY - r.top)  + 'px');
-});
-
-/* ============ Typing Effect ============ */
-const typedEl = document.getElementById('typed');
-const lines = [
-  'مرحبًا بيك في بروفايلي ✨',
-  'ستايلش الشات 🐍',
-  'صانع محتوى • مبدع • مميز',
-];
-let li = 0, ci = 0, deleting = false;
-
-function typeLoop() {
-  const current = lines[li];
-  if (!deleting) {
-    typedEl.textContent = current.slice(0, ++ci);
-    if (ci === current.length) {
-      deleting = true;
-      return setTimeout(typeLoop, 1800);
-    }
-  } else {
-    typedEl.textContent = current.slice(0, --ci);
-    if (ci === 0) {
-      deleting = false;
-      li = (li + 1) % lines.length;
-    }
-  }
-  setTimeout(typeLoop, deleting ? 45 : 85);
-}
-typeLoop();
-
-/* ============ Stats Counter ============ */
-const stats = document.querySelectorAll('.stat .num');
-stats.forEach(el => {
-  const raw = el.textContent;
-  const num = parseFloat(raw);
-  const suffix = raw.replace(/[\d.]/g, '');
-  let cur = 0;
-  const step = num / 40;
-  const timer = setInterval(() => {
-    cur += step;
-    if (cur >= num) { cur = num; clearInterval(timer); }
-    el.textContent = cur.toFixed(raw.includes('.') ? 1 : 0) + suffix;
-  }, 25);
-});
-</script>
-
-</body>
-</html>
+    <a href="#" title="Telegram"><i class
