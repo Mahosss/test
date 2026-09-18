@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>ɖƲιιȻ ✦ Profile</title>
+<title>ɖƲιιȻ</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&family=Reem+Kufi:wght@400;600;700&display=swap" rel="stylesheet">
@@ -226,7 +226,15 @@ body {
 }
 
 /* ================= Header ================= */
-.header { text-align: center; padding: 20px 26px 0; }
+.header {
+  text-align: center;
+  padding: 22px 26px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
 .name {
   font-family: 'Reem Kufi', sans-serif;
   font-size: 30px;
@@ -239,35 +247,53 @@ body {
   -webkit-text-fill-color: transparent;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   animation: shineText 4s linear infinite;
+  line-height: 1.2;
 }
 @keyframes shineText { to { background-position: 220% center; } }
+
 .verify {
   font-size: 20px;
   -webkit-text-fill-color: var(--pink);
   color: var(--pink);
   filter: drop-shadow(0 0 8px var(--pink));
 }
+
+/* ستايلش الشات - تحت الاسم مباشرة */
 .tagline {
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 14px;
   color: var(--dim);
-  letter-spacing: 1px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+  letter-spacing: 1.5px;
+  margin: 0;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(255, 46, 136, 0.08);
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
 }
-.tagline i { color: var(--pink); }
+.tagline:hover {
+  background: rgba(255, 46, 136, 0.15);
+  box-shadow: 0 0 18px rgba(255, 46, 136, 0.25);
+}
+.tagline i {
+  color: var(--pink);
+  filter: drop-shadow(0 0 6px var(--pink));
+}
 
-/* typing effect line */
+/* الكتابة المتحركة */
 .typed {
-  margin-top: 10px;
   font-size: 13px;
   color: var(--cyan);
   min-height: 18px;
   letter-spacing: 0.5px;
   opacity: 0.9;
+  margin: 0;
 }
 .typed::after {
   content: '|';
