@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SARA' ✦ Editorial Portfolio</title>
+<title>SARA' ✦ Elegance</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
 <style>
 /* ================= Base ================= */
@@ -14,37 +14,55 @@
   margin: 0; padding: 0; box-sizing: border-box;
 }
 :root {
-  --bg: #0e0e10;
-  --card-bg: #17171a;
-  --border: #2a2a30;
-  --copper: #b87333;
-  --copper-light: #d99c5e;
-  --copper-glow: rgba(184, 115, 51, 0.15);
-  --text: #f4f4f4;
-  --text-dim: #8e8e93;
-  --serif: 'Playfair Display', serif;
-  --sans: 'Cairo', sans-serif;
+  --bg: #050505;
+  --card: #111111;
+  --gold: #d4af37;
+  --gold-light: #f3e5ab;
+  --gold-dim: #8b7332;
+  --text: #f5f5f5;
+  --dim: #999999;
+  --border: rgba(212, 175, 55, 0.2);
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Cairo', sans-serif;
 }
 
 body {
   min-height: 100vh;
-  background-color: var(--bg);
+  background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
+  font-family: var(--font-sans);
   display: flex;
   justify-content: center;
-  padding: 4vh 3vw;
+  align-items: center;
+  padding: 40px 15px;
+  position: relative;
   overflow-x: hidden;
 }
 
-/* ================= Main Layout (Bento Grid) ================= */
-.bento-container {
+/* ================= Background Ambient ================= */
+.ambient-light {
+  position: fixed;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ================= Main Card ================= */
+.profile-card {
+  position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  animation: fadeIn 1.2s ease-out;
+  max-width: 480px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 50px 30px 40px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.05);
+  text-align: center;
+  animation: fadeIn 1.2s ease;
 }
 
 @keyframes fadeIn {
@@ -52,317 +70,251 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ================= Left Column (Profile & Info) ================= */
-.left-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 40px 0;
-}
-
-/* Subtitle */
-.subtitle {
-  font-family: var(--sans);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--copper-light);
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.subtitle::before {
-  content: '';
-  width: 40px; height: 1px;
-  background: var(--copper-light);
-}
-
-/* Big Name */
-.name {
-  font-family: var(--serif);
-  font-size: clamp(80px, 12vw, 150px);
-  line-height: 0.9;
-  font-weight: 700;
-  margin-bottom: 20px;
+/* ================= Image (Centered) ================= */
+.image-wrap {
   position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 24px;
 }
-.name span {
-  color: var(--copper);
-  font-style: italic;
+.image-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--gold), transparent);
+  animation: spin 6s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+.profile-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg);
+  padding: 4px;
+  z-index: 1;
+}
+.profile-img img {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  user-select: none;
 }
 
-/* Bio */
-.bio {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text-dim);
-  max-width: 450px;
-  margin-bottom: 40px;
+/* Status dot */
+.status-dot {
+  position: absolute;
+  bottom: 8px; right: 8px;
+  width: 20px; height: 20px;
+  background: #22c55e;
+  border: 3px solid var(--card);
+  border-radius: 50%;
+  z-index: 2;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  50% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
 }
 
-/* Stats Grid (Left) */
-.stats-grid {
-  display: flex;
-  gap: 40px;
-  margin-bottom: 50px;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 24px 0;
+/* ================= Name & Title ================= */
+.name {
+  font-family: var(--font-serif);
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--gold-light);
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  line-height: 1.2;
 }
-.stat-box h4 {
-  font-size: 28px;
+.name i {
+  font-size: 18px;
+  color: var(--gold);
+  vertical-align: middle;
+  margin-right: 6px;
+  filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
+}
+
+.title {
+  font-size: 14px;
+  color: var(--dim);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+.title::after {
+  content: '';
+  display: block;
+  width: 40px; height: 1px;
+  background: var(--gold);
+  margin: 12px auto 0;
+}
+
+/* ================= Info Grid (3 Boxes) ================= */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.info-box {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 8px;
+  transition: all 0.3s ease;
+}
+.info-box:hover {
+  background: rgba(212,175,55,0.06);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.info-box i {
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 8px;
+  display: block;
+}
+.info-box .val {
+  font-family: var(--font-serif);
+  font-size: 15px;
   font-weight: 700;
   color: var(--text);
+  display: block;
 }
-.stat-box p {
-  font-size: 12px;
-  color: var(--copper-light);
+.info-box .lb {
+  font-size: 10px;
+  color: var(--dim);
+  text-transform: uppercase;
   letter-spacing: 1px;
   margin-top: 4px;
+  display: block;
 }
 
-/* Action Buttons */
-.actions {
-  display: flex;
-  gap: 16px;
-}
-.btn {
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  padding: 14px 28px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
+/* ================= Quote ================= */
+.quote-box {
+  background: linear-gradient(135deg, rgba(212,175,55,0.05), transparent);
+  border-right: 2px solid var(--gold);
+  padding: 16px 18px;
+  margin-bottom: 30px;
+  text-align: right;
+  border-radius: 0 8px 8px 0;
+  min-height: 80px;
   display: flex;
   align-items: center;
-  gap: 8px;
 }
-.btn-primary {
-  background: var(--copper);
-  color: #fff;
-  border: 1px solid var(--copper);
-}
-.btn-primary:hover {
-  background: var(--copper-light);
-  border-color: var(--copper-light);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px var(--copper-glow);
-}
-.btn-outline {
-  background: transparent;
-  color: var(--text);
-  border: 1px solid var(--border);
-}
-.btn-outline:hover {
-  border-color: var(--copper);
-  color: var(--copper-light);
-}
-
-/* ================= Right Column (Bento Cards) ================= */
-.right-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto auto;
-  gap: 16px;
-}
-
-/* Common Card Style */
-.card {
-  background: var(--card-bg);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-.card:hover {
-  border-color: var(--copper);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 20px var(--copper-glow);
-  transform: translateY(-4px);
-}
-
-/* Photo Card (Main) */
-.card-photo {
-  grid-column: 1 / -1;
-  height: 380px;
-  padding: 0;
-}
-.card-photo img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: grayscale(20%) contrast(1.1);
-  transition: filter 0.5s ease, transform 0.7s ease;
-}
-.card-photo:hover img {
-  filter: grayscale(0%) contrast(1.1);
-  transform: scale(1.03);
-}
-/* Overlay for photo */
-.card-photo::after {
-  content: 'PORTRAIT OF A QUEEN';
-  position: absolute;
-  bottom: 20px; right: 20px;
-  font-family: var(--serif);
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: #fff;
-  background: rgba(0,0,0,0.5);
-  padding: 6px 12px;
-  backdrop-filter: blur(4px);
-  border-radius: 4px;
-  pointer-events: none;
-}
-
-/* Small Cards */
-.card-meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.card-meta .icon {
-  font-size: 24px;
-  color: var(--copper-light);
-  margin-bottom: 12px;
-}
-.card-meta .label {
-  font-size: 11px;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  margin-bottom: 4px;
-}
-.card-meta .value {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text);
-  font-family: var(--serif);
-}
-
-/* Quote Card */
-.card-quote {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 120px;
-}
-.card-quote i {
-  color: var(--copper);
-  font-size: 20px;
-  margin-bottom: 10px;
-  opacity: 0.6;
-}
-.card-quote p {
-  font-family: var(--serif);
-  font-size: 20px;
+.quote-box p {
+  font-family: var(--font-serif);
   font-style: italic;
-  line-height: 1.5;
+  font-size: 16px;
   color: var(--text);
+  line-height: 1.6;
   transition: opacity 0.4s ease;
 }
 
+/* ================= Social Links ================= */
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+.socials a {
+  width: 44px; height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.socials a:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(212,175,55,0.2);
+}
+
 /* ================= Responsive ================= */
-@media (max-width: 900px) {
-  .bento-container {
-    grid-template-columns: 1fr;
-  }
-  .left-col {
-    padding: 20px 0;
-  }
-  .name { font-size: 80px; }
-  .stats-grid { gap: 20px; }
-  .right-col { grid-template-columns: 1fr; }
-  .card-photo { height: 300px; }
+@media (max-width: 480px) {
+  .profile-card { padding: 40px 20px 30px; }
+  .name { font-size: 34px; }
+  .image-wrap { width: 130px; height: 130px; }
+  .info-grid { gap: 8px; }
+  .info-box { padding: 12px 4px; }
+  .info-box .val { font-size: 13px; }
+  .quote-box p { font-size: 14px; }
 }
 </style>
 </head>
 <body>
 
-<div class="bento-container">
+<!-- Ambient Light -->
+<div class="ambient-light"></div>
 
-  <!-- LEFT COLUMN: Info -->
-  <div class="left-col">
-    
-    <div class="subtitle">Digital Identity</div>
-    
-    <h1 class="name">
-      <span>sara</span>'
-    </h1>
+<!-- Profile Card -->
+<main class="profile-card">
 
-    <p class="bio">
-      صانعة محتوى، مبدعة، وستايلش الشات. أؤمن أن الأنوثة طاقة، والاحترافية أسلوب حياة. هنا مساحتي الشخصية لأشارككم شغفي وتفاصيل رحلتي.
-    </p>
-
-    <div class="stats-grid">
-      <div class="stat-box">
-        <h4>12.5K</h4>
-        <p>Followers</p>
-      </div>
-      <div class="stat-box">
-        <h4>1.2M</h4>
-        <p>Views</p>
-      </div>
-      <div class="stat-box">
-        <h4>48</h4>
-        <p>Projects</p>
-      </div>
+  <!-- Centered Image -->
+  <div class="image-wrap">
+    <div class="image-ring"></div>
+    <div class="profile-img">
+      <img src="https://img.alfrsantv.com/img/f176635888499821.png" alt="Sara">
     </div>
-
-    <div class="actions">
-      <a href="#" class="btn btn-primary">
-        <i class="fas fa-paper-plane"></i> تواصل معي
-      </a>
-      <a href="#" class="btn btn-outline">
-        <i class="fas fa-play"></i> شاهد أعمالي
-      </a>
-    </div>
-
+    <div class="status-dot"></div>
   </div>
 
-  <!-- RIGHT COLUMN: Bento Cards -->
-  <div class="right-col">
-    
-    <!-- Main Photo -->
-    <div class="card card-photo">
-      <img src="https://img.alfrsantv.com/img/f176635888499821.png" alt="Sara Profile">
-    </div>
+  <!-- Name -->
+  <h1 class="name">
+    <i class="fas fa-crown"></i> sara'
+  </h1>
+  <div class="title">Digital Creator</div>
 
-    <!-- Small Card: Location -->
-    <div class="card card-meta">
-      <div>
-        <i class="fas fa-location-dot icon"></i>
-        <div class="label">Location</div>
-        <div class="value">Cairo, EG</div>
-      </div>
+  <!-- Info Grid -->
+  <div class="info-grid">
+    <div class="info-box">
+      <i class="fas fa-location-dot"></i>
+      <span class="val">Cairo</span>
+      <span class="lb">Location</span>
     </div>
-
-    <!-- Small Card: Status -->
-    <div class="card card-meta">
-      <div>
-        <i class="fas fa-star icon"></i>
-        <div class="label">Status</div>
-        <div class="value">Verified</div>
-      </div>
+    <div class="info-box">
+      <i class="fas fa-face-smile"></i>
+      <span class="val">Chill</span>
+      <span class="lb">Mood</span>
     </div>
-
-    <!-- Quote Card -->
-    <div class="card card-quote">
-      <i class="fas fa-quote-right"></i>
-      <p id="quoteText">"الاحترافية مش بس في الشغل، الاحترافية في طريقة تعاملك مع نفسك الأول."</p>
+    <div class="info-box">
+      <i class="fas fa-star"></i>
+      <span class="val">Verified</span>
+      <span class="lb">Status</span>
     </div>
-
   </div>
 
-</div>
+  <!-- Rotating Quote -->
+  <div class="quote-box">
+    <p id="quoteText">"الاحترافية مش بس في الشغل، الاحترافية في طريقة تعاملك مع نفسك الأول."</p>
+  </div>
+
+  <!-- Social Links -->
+  <div class="socials">
+    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+  </div>
+
+</main>
 
 <script>
-/* ============ Dynamic Quote ============ */
+/* ============ Rotating Quotes ============ */
 const quotes = [
   '"الاحترافية مش بس في الشغل، الاحترافية في طريقة تعاملك مع نفسك الأول."',
   '"كوني نسخة أصلية، مش نسخة طبق الأصل من حد تاني."',
@@ -371,16 +323,16 @@ const quotes = [
 ];
 
 const quoteEl = document.getElementById('quoteText');
-let currentQuote = 0;
+let idx = 0;
 
 setInterval(() => {
   quoteEl.style.opacity = '0';
   setTimeout(() => {
-    currentQuote = (currentQuote + 1) % quotes.length;
-    quoteEl.textContent = quotes[currentQuote];
+    idx = (idx + 1) % quotes.length;
+    quoteEl.textContent = quotes[idx];
     quoteEl.style.opacity = '1';
   }, 400);
-}, 5000); // يتغير كل 5 ثواني
+}, 5000);
 </script>
 
 </body>
