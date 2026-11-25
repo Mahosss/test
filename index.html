@@ -1,339 +1,205 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SARA' ✦ Elegance</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#080706">
+<title>Dahi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
-/* ================= Base ================= */
-* {
-  margin: 0; padding: 0; box-sizing: border-box;
+:root{--gold:#d5a04b;--gold2:#ffe1a0;--gold3:#8a5b25;--ink:#050505;--panel:rgba(8,8,8,.82)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:#fff;background:#030303;font-family:Tajawal,sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:
+radial-gradient(ellipse at 18% 28%,#7b4a1729,transparent 34%),
+radial-gradient(ellipse at 85% 70%,#a56c2220,transparent 30%),
+linear-gradient(135deg,#090806,#020202 55%,#0d0905)}
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+.ambient:before,.ambient:after{content:"";position:absolute;width:48vw;height:48vw;border:1px solid #c38c3a16;border-radius:50%;filter:blur(.2px);animation:orbit 28s linear infinite}
+.ambient:before{left:-22vw;top:12vh;box-shadow:0 0 60px #c58a3212,inset 0 0 50px #c58a3210}
+.ambient:after{right:-25vw;bottom:-18vh;width:60vw;height:60vw;animation-direction:reverse;animation-duration:36s}
+.particles{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;bottom:-20px;width:3px;height:3px;border-radius:50%;background:#f4c875;box-shadow:0 0 9px 2px #c58b3c88;opacity:0;animation:rise var(--dur) linear infinite;left:var(--x);animation-delay:var(--delay)}
+.shell{width:min(980px,100%);min-height:100vh;margin:auto;position:relative;z-index:1;display:grid;grid-template-columns:52% 48%;direction:ltr;align-items:center;padding:24px 20px}
+.visual{min-height:540px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;direction:ltr}
+.visual:before{content:"";position:absolute;width:80%;height:75%;border-radius:50%;background:radial-gradient(ellipse,#d39b4420,transparent 65%);filter:blur(15px);animation:pulse 5s ease-in-out infinite}
+.photo-stage{width:min(245px,58%);aspect-ratio:1;position:relative;margin-top:8px;animation:enterLeft 1.1s cubic-bezier(.2,.8,.2,1) both}
+.photo-stage:before{content:"";position:absolute;inset:-9px;border:1px solid #e1b35e;border-radius:50%;box-shadow:0 0 10px #e7b95f,0 0 32px #b57b2e66;animation:glow 3.5s ease-in-out infinite}
+.photo-stage:after{content:"";position:absolute;inset:-19px;border:1px solid #c58b3c66;border-radius:50%;border-left-color:transparent;border-right-color:#f3ca7a;animation:spin 22s linear infinite}
+.photo-orbit{position:absolute;inset:-27px;border-radius:50%;border:1px dashed #d4a14b42;animation:spin 45s linear infinite reverse}
+.portrait{width:100%;height:100%;object-fit:cover;display:block;border-radius:50%;border:7px solid #070707;box-shadow:0 0 0 2px #f5d18b,0 12px 50px #000;background:linear-gradient(135deg,#34302b,#090909);transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .7s}
+.photo-stage:hover .portrait{transform:scale(1.035);filter:contrast(1.07) saturate(1.08)}
+.crown{position:absolute;z-index:3;top:-62px;left:50%;transform:translateX(-50%);font-size:61px;line-height:1;color:#d9a34f;text-shadow:0 4px 8px #000,0 0 18px #d5a04b99;filter:drop-shadow(0 0 8px #b57a2d55);animation:crownFloat 3.4s ease-in-out infinite}
+.name-block{position:relative;text-align:center;margin-top:16px;animation:riseIn .9s .25s both}
+.name{font-family:"Great Vibes",cursive;font-size:clamp(76px,8vw,108px);line-height:.85;color:#e2b66f;text-shadow:0 3px 2px #000,0 0 25px #bd843a88;margin:0;direction:ltr}
+.tagline{direction:ltr;color:#f8dca5;font-size:17px;letter-spacing:.3px;margin-top:10px;text-shadow:0 0 12px #bd843a55}
+.nav{display:flex;gap:10px;direction:ltr;margin-top:27px;animation:riseIn .9s .45s both}
+.nav button{width:52px;height:52px;border-radius:50%;border:1px solid #d8a34c;background:radial-gradient(circle at 35% 25%,#29221a,#050505 70%);color:#e8bd78;font-size:23px;display:grid;place-items:center;cursor:pointer;position:relative;box-shadow:0 0 12px #c58c3d30,inset 0 0 12px #d39a4425;transition:transform .28s,box-shadow .28s,color .28s,background .28s}
+.nav button:after{content:"";position:absolute;inset:5px;border:1px solid #d7a34c35;border-radius:50%}
+.nav button:hover,.nav button.active{transform:translateY(-6px) scale(1.05);color:#fff0ce;box-shadow:0 0 22px #e7b95f88,inset 0 0 15px #e7b95f30;background:radial-gradient(circle,#3a2a16,#080706)}
+.nav button span{position:absolute;bottom:calc(100% + 12px);background:#16110a;border:1px solid #a87b3b;color:#f7d99e;padding:5px 10px;border-radius:8px;font:12px Tajawal;white-space:nowrap;opacity:0;transform:translateY(5px);transition:.2s;pointer-events:none}
+.nav button:hover span{opacity:1;transform:translateY(0)}
+.details{direction:rtl;display:flex;flex-direction:column;gap:15px;padding:10px 8px 10px 14px;max-width:420px;width:100%;justify-self:center}
+.panel{position:relative;overflow:hidden;border:1px solid #9f743d;border-radius:23px;background:linear-gradient(145deg,rgba(17,15,12,.91),rgba(3,3,3,.93));box-shadow:0 15px 45px #0009,0 0 22px #c18a3b18,inset 0 0 22px #d7a44a08;backdrop-filter:blur(9px);animation:enterRight .9s cubic-bezier(.2,.8,.2,1) both}
+.panel:nth-child(2){animation-delay:.18s}
+.panel{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}\n.panel:hover{transform:translateY(-3px);border-color:#d3a35a;box-shadow:0 18px 48px #000b,0 0 28px #c18a3b2b,inset 0 0 22px #d7a44a0c}\n.panel:before{content:"";position:absolute;top:0;right:-80%;width:55%;height:1px;background:linear-gradient(90deg,transparent,#ffe4a8,transparent);animation:shine 6s ease-in-out infinite}
+.panel:after{content:"";position:absolute;bottom:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,#f3cb7d,transparent);box-shadow:0 0 10px #e6b75e}
+.info{padding:18px 21px 19px}
+.panel h2{font-size:24px;color:#f2d095;margin:0 0 10px;padding-bottom:10px;border-bottom:1px solid #7f5c31;font-weight:700}
+.info-row{display:flex;align-items:center;gap:11px;min-height:39px;font-size:17px;transition:transform .25s,color .25s}
+.info-row:hover{transform:translateX(-5px);color:#ffe2a4}
+.info-row .emoji{width:30px;text-align:center;font-size:19px;flex:none;filter:drop-shadow(0 0 5px #dba64b33)}
+.info-row .value{color:#f7f2eb}
+.music{padding:16px 18px 15px}
+.music h2{font-size:21px;border:0;margin:0 0 10px;padding:0;color:#efc77e}
+.track{display:flex;align-items:center;gap:14px;direction:ltr}
+.cover{width:68px;height:68px;border-radius:14px;object-fit:cover;border:1px solid #57452d;box-shadow:0 5px 18px #000;background:linear-gradient(135deg,#34302b,#090909)}
+.song-meta{text-align:left;direction:ltr}
+.song-title{font:17px Arial,sans-serif;color:#fff}
+.artist{font:14px Arial,sans-serif;color:#aaa;margin-top:5px}
+.playlist{display:grid;gap:6px;margin-top:14px}
+.song-choice{width:100%;display:flex;align-items:center;gap:11px;padding:8px 10px;border:1px solid #ffffff12;border-radius:10px;background:#ffffff05;color:#eee;font-family:Tajawal,sans-serif;text-align:right;cursor:pointer;transition:.22s}
+.song-choice:hover,.song-choice.active{border-color:#bd8c49aa;background:linear-gradient(90deg,#d5a04b14,#ffffff07);box-shadow:inset 0 0 12px #d5a04b0a}
+.song-number{font:12px Arial,sans-serif;color:#d6a95f;direction:ltr}
+.song-choice-name{flex:1;font-size:14px}
+.song-choice-state{color:#e6bd79;font-size:13px}
+.player{margin-top:14px;direction:ltr}
+.time{font:12px Arial,sans-serif;color:#d8d1c6;text-align:right;margin-bottom:4px}
+.seek{width:100%;height:4px;accent-color:#e7bd77;cursor:pointer}
+.controls{display:flex;align-items:center;justify-content:space-around;margin-top:10px;direction:ltr}
+.controls button{border:0;background:transparent;color:#eee;font-size:22px;cursor:pointer;padding:4px;transition:transform .2s,color .2s}
+.controls button:hover{color:#ffe1a0;transform:scale(1.18)}
+.controls .play{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#37322c,#070707);border:1px solid #8e6938;box-shadow:0 0 15px #d5a04b33;color:#fff;font-size:19px}
+.visualizer{height:17px;display:flex;align-items:center;gap:3px;justify-content:center;margin-top:8px;opacity:.65}
+.visualizer i{width:3px;height:5px;background:#e0b568;border-radius:4px;animation:wave .8s ease-in-out infinite alternate;animation-play-state:paused}
+.visualizer.playing i{animation-play-state:running}
+.visualizer i:nth-child(2n){animation-delay:.2s}.visualizer i:nth-child(3n){animation-delay:.4s}.visualizer i:nth-child(4n){animation-delay:.1s}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;z-index:9;background:#100d08;border:1px solid #a77b3c;color:#f3d69d;border-radius:22px;padding:9px 18px;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes rise{0%{transform:translate3d(0,0,0) scale(.5);opacity:0}12%{opacity:.8}80%{opacity:.55}100%{transform:translate3d(35px,-110vh,0) scale(1.3);opacity:0}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes glow{0%,100%{box-shadow:0 0 8px #e7b95f,0 0 24px #b57b2e55}50%{box-shadow:0 0 17px #ffe1a0,0 0 42px #b57b2e99}}
+@keyframes pulse{0%,100%{transform:scale(.92);opacity:.6}50%{transform:scale(1.08);opacity:1}}
+@keyframes crownFloat{0%,100%{margin-top:0}50%{margin-top:-8px}}
+@keyframes shine{0%,15%{right:-80%}65%,100%{right:130%}}
+@keyframes riseIn{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes enterLeft{from{opacity:0;transform:translateX(-45px) scale(.94)}to{opacity:1;transform:translateX(0) scale(1)}}
+@keyframes enterRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes wave{from{height:4px}to{height:16px}}
+@media(min-width:801px){.shell{min-height:0;padding-top:38px;padding-bottom:38px}.visual{min-height:510px}.details{gap:14px}}\n@media(max-width:800px){
+ .shell{grid-template-columns:1fr;max-width:560px;padding:18px 14px}
+ .visual{min-height:auto;padding:35px 5px 18px}
+ .photo-stage{width:min(225px,62vw)}
+ .name{font-size:92px}.tagline{font-size:16px}
+ .nav{margin-top:28px;gap:9px}.nav button{width:48px;height:48px}
+ .details{padding:10px 2px 20px}
 }
-:root {
-  --bg: #050505;
-  --card: #111111;
-  --gold: #d4af37;
-  --gold-light: #f3e5ab;
-  --gold-dim: #8b7332;
-  --text: #f5f5f5;
-  --dim: #999999;
-  --border: rgba(212, 175, 55, 0.2);
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Cairo', sans-serif;
+@media(max-width:420px){
+ .shell{padding:12px 10px}
+ .photo-stage{width:205px}
+ .crown{font-size:68px;top:-55px}
+ .name{font-size:82px}
+ .nav{gap:7px}.nav button{width:44px;height:44px;font-size:21px}
+ .info{padding:14px 12px}
+ .info-row{font-size:15px;gap:6px}
+ .panel h2{font-size:21px}.song-choice{padding:7px 9px}.song-choice-name{font-size:13px}
 }
-
-body {
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px 15px;
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* ================= Background Ambient ================= */
-.ambient-light {
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
-  z-index: 0;
-  pointer-events: none;
-}
-
-/* ================= Main Card ================= */
-.profile-card {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 480px;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 50px 30px 40px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(212,175,55,0.05);
-  text-align: center;
-  animation: fadeIn 1.2s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ================= Image (Centered) ================= */
-.image-wrap {
-  position: relative;
-  width: 160px;
-  height: 160px;
-  margin: 0 auto 24px;
-}
-.image-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent, var(--gold), transparent, var(--gold), transparent);
-  animation: spin 6s linear infinite;
-}
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-.profile-img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: var(--bg);
-  padding: 4px;
-  z-index: 1;
-}
-.profile-img img {
-  width: 100%; height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  display: block;
-  user-select: none;
-}
-
-/* Status dot */
-.status-dot {
-  position: absolute;
-  bottom: 8px; right: 8px;
-  width: 20px; height: 20px;
-  background: #22c55e;
-  border: 3px solid var(--card);
-  border-radius: 50%;
-  z-index: 2;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-  50% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
-}
-
-/* ================= Name & Title ================= */
-.name {
-  font-family: var(--font-serif);
-  font-size: 42px;
-  font-weight: 700;
-  color: var(--gold-light);
-  letter-spacing: 2px;
-  margin-bottom: 4px;
-  line-height: 1.2;
-}
-.name i {
-  font-size: 18px;
-  color: var(--gold);
-  vertical-align: middle;
-  margin-right: 6px;
-  filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));
-}
-
-.title {
-  font-size: 14px;
-  color: var(--dim);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-}
-.title::after {
-  content: '';
-  display: block;
-  width: 40px; height: 1px;
-  background: var(--gold);
-  margin: 12px auto 0;
-}
-
-/* ================= Info Grid (3 Boxes) ================= */
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.info-box {
-  background: rgba(255,255,255,0.02);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 16px 8px;
-  transition: all 0.3s ease;
-}
-.info-box:hover {
-  background: rgba(212,175,55,0.06);
-  border-color: var(--gold);
-  transform: translateY(-3px);
-}
-.info-box i {
-  font-size: 18px;
-  color: var(--gold);
-  margin-bottom: 8px;
-  display: block;
-}
-.info-box .val {
-  font-family: var(--font-serif);
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text);
-  display: block;
-}
-.info-box .lb {
-  font-size: 10px;
-  color: var(--dim);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-top: 4px;
-  display: block;
-}
-
-/* ================= Quote ================= */
-.quote-box {
-  background: linear-gradient(135deg, rgba(212,175,55,0.05), transparent);
-  border-right: 2px solid var(--gold);
-  padding: 16px 18px;
-  margin-bottom: 30px;
-  text-align: right;
-  border-radius: 0 8px 8px 0;
-  min-height: 80px;
-  display: flex;
-  align-items: center;
-}
-.quote-box p {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--text);
-  line-height: 1.6;
-  transition: opacity 0.4s ease;
-}
-
-/* ================= Social Links ================= */
-.socials {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-}
-.socials a {
-  width: 44px; height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text);
-  font-size: 16px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-.socials a:hover {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: #000;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(212,175,55,0.2);
-}
-
-/* ================= Responsive ================= */
-@media (max-width: 480px) {
-  .profile-card { padding: 40px 20px 30px; }
-  .name { font-size: 34px; }
-  .image-wrap { width: 130px; height: 130px; }
-  .info-grid { gap: 8px; }
-  .info-box { padding: 12px 4px; }
-  .info-box .val { font-size: 13px; }
-  .quote-box p { font-size: 14px; }
-}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-
-<!-- Ambient Light -->
-<div class="ambient-light"></div>
-
-<!-- Profile Card -->
-<main class="profile-card">
-
-  <!-- Centered Image -->
-  <div class="image-wrap">
-    <div class="image-ring"></div>
-    <div class="profile-img">
-      <img src="https://img.alfrsantv.com/img/f176635888499821.png" alt="Sara">
-    </div>
-    <div class="status-dot"></div>
+<div class="ambient"></div><div class="particles" id="particles"></div>
+<main class="shell">
+ <section class="visual">
+  <div class="photo-stage">
+   <div class="photo-orbit"></div>
+   <div class="crown">♛</div>
+   <img class="portrait" src="assets/dahi.jpg" alt="الصورة الشخصية لـ dahi">
   </div>
-
-  <!-- Name -->
-  <h1 class="name">
-    <i class="fas fa-crown"></i> sara'
-  </h1>
-  <div class="title">Digital Creator</div>
-
-  <!-- Info Grid -->
-  <div class="info-grid">
-    <div class="info-box">
-      <i class="fas fa-location-dot"></i>
-      <span class="val">Cairo</span>
-      <span class="lb">Location</span>
-    </div>
-    <div class="info-box">
-      <i class="fas fa-face-smile"></i>
-      <span class="val">Chill</span>
-      <span class="lb">Mood</span>
-    </div>
-    <div class="info-box">
-      <i class="fas fa-star"></i>
-      <span class="val">Verified</span>
-      <span class="lb">Status</span>
-    </div>
+  <div class="name-block">
+   <h1 class="name">dahi</h1>
+   <div class="tagline">Dream Big .. Live Better</div>
   </div>
-
-  <!-- Rotating Quote -->
-  <div class="quote-box">
-    <p id="quoteText">"الاحترافية مش بس في الشغل، الاحترافية في طريقة تعاملك مع نفسك الأول."</p>
+  <nav class="nav" aria-label="التنقل">
+   <button class="active" data-tip="الرئيسية" aria-label="الرئيسية">⌂<span>الرئيسية</span></button>
+   <button data-tip="حسابي" aria-label="حسابي">♟<span>حسابي</span></button>
+   <button data-tip="الألعاب" aria-label="الألعاب">🎮<span>الألعاب</span></button>
+   <button data-tip="الصور" aria-label="الصور">▣<span>الصور</span></button>
+   <button data-tip="الوضع الليلي" aria-label="الوضع الليلي">☾<span>الوضع الليلي</span></button>
+  </nav>
+ </section>
+ <section class="details">
+  <div class="panel info">
+   <h2>معلوماتي</h2>
+   <div class="info-row"><span class="emoji">🇪🇬</span><span class="value">البلد&nbsp; : &nbsp;مصر</span></div>
+   <div class="info-row"><span class="emoji">😎</span><span class="value">المزاج&nbsp; : &nbsp;هادي ومركز</span></div>
+   <div class="info-row"><span class="emoji">💜</span><span class="value">الحالة&nbsp; : &nbsp;أعزب ♡</span></div>
+   <div class="info-row"><span class="emoji">♑</span><span class="value">البرج&nbsp; : &nbsp;الجدي</span></div>
+   <div class="info-row"><span class="emoji">🎮</span><span class="value">الهوايات&nbsp; : &nbsp;التقنية، الألعاب، السفر</span></div>
   </div>
-
-  <!-- Social Links -->
-  <div class="socials">
-    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
-    <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+  <div class="panel music">
+   <h2>أغنيتي المفضلة</h2>
+   <div class="track">
+    <img class="cover" id="cover" src="assets/cover.jpg" alt="غلاف الأغنية">
+    <div class="song-meta"><div class="song-title" id="songTitle">الأغنية الأولى</div><div class="artist" id="songArtist">اسم الفنان</div></div>
+   </div>
+   <div class="playlist" id="playlist" aria-label="قائمة الأغاني">
+    <button class="song-choice active" data-index="0"><span class="song-number">01</span><span class="song-choice-name">الأغنية الأولى</span><span class="song-choice-state">▶</span></button>
+    <button class="song-choice" data-index="1"><span class="song-number">02</span><span class="song-choice-name">الأغنية الثانية</span><span class="song-choice-state">▶</span></button>
+    <button class="song-choice" data-index="2"><span class="song-number">03</span><span class="song-choice-name">الأغنية الثالثة</span><span class="song-choice-state">▶</span></button>
+    <button class="song-choice" data-index="3"><span class="song-number">04</span><span class="song-choice-name">الأغنية الرابعة</span><span class="song-choice-state">▶</span></button>
+   </div>
+   <audio id="audio"></audio>
+   <div class="player">
+    <div class="time" id="time">0:00 / 0:00</div>
+    <input class="seek" id="seek" type="range" min="0" max="100" value="0" aria-label="تقدم الأغنية">
+    <div class="controls">
+     <button id="back" aria-label="رجوع عشر ثوان">|◀</button>
+     <button class="play" id="play" aria-label="تشغيل">▶</button>
+     <button id="forward" aria-label="تقديم عشر ثوان">▶|</button>
+     <button id="mute" aria-label="كتم الصوت">◖))</button>
+    </div>
+    <div class="visualizer" id="visualizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+   </div>
   </div>
-
+ </section>
 </main>
-
+<div class="toast" id="toast"></div>
 <script>
-/* ============ Rotating Quotes ============ */
-const quotes = [
-  '"الاحترافية مش بس في الشغل، الاحترافية في طريقة تعاملك مع نفسك الأول."',
-  '"كوني نسخة أصلية، مش نسخة طبق الأصل من حد تاني."',
-  '"النجاح بيبدأ لما تقرري إنك تستحقي الأفضل."',
-  '"الأنوثة قوة، والذكاء سلاح، والاتنين مع بعض ملهمش حل."'
+const particles=document.getElementById('particles');
+for(let i=0;i<32;i++){const p=document.createElement('span');p.className='particle';p.style.setProperty('--x',Math.random()*100+'%');p.style.setProperty('--dur',(9+Math.random()*13)+'s');p.style.setProperty('--delay',(-Math.random()*20)+'s');particles.appendChild(p)}
+const tracks=[
+ {title:'الأغنية الأولى',artist:'اسم الفنان',cover:'assets/cover.jpg',url:''},
+ {title:'الأغنية الثانية',artist:'اسم الفنان',cover:'assets/cover.jpg',url:''},
+ {title:'الأغنية الثالثة',artist:'اسم الفنان',cover:'assets/cover.jpg',url:''},
+ {title:'الأغنية الرابعة',artist:'اسم الفنان',cover:'assets/cover.jpg',url:''}
 ];
-
-const quoteEl = document.getElementById('quoteText');
-let idx = 0;
-
-setInterval(() => {
-  quoteEl.style.opacity = '0';
-  setTimeout(() => {
-    idx = (idx + 1) % quotes.length;
-    quoteEl.textContent = quotes[idx];
-    quoteEl.style.opacity = '1';
-  }, 400);
-}, 5000);
+const audio=document.getElementById('audio'),play=document.getElementById('play'),seek=document.getElementById('seek'),time=document.getElementById('time'),visualizer=document.getElementById('visualizer');
+const fmt=n=>Number.isFinite(n)?Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0'):'0:00';
+let activeTrack=0;
+function chooseTrack(index,autoplay=false){
+ activeTrack=index;const track=tracks[index];
+ document.getElementById('songTitle').textContent=track.title;
+ document.getElementById('songArtist').textContent=track.artist;
+ document.getElementById('cover').src=track.cover;
+ document.querySelectorAll('.song-choice').forEach((b,i)=>{b.classList.toggle('active',i===index);b.querySelector('.song-choice-state').textContent=i===index?'♫':'▶'});
+ audio.pause();audio.src=track.url;audio.load();seek.value=0;time.textContent='0:00 / 0:00';play.textContent='▶';visualizer.classList.remove('playing');
+ if(autoplay&&track.url){audio.play().then(()=>{play.textContent='Ⅱ';visualizer.classList.add('playing')}).catch(()=>{})}
+}
+document.querySelectorAll('.song-choice').forEach(b=>b.addEventListener('click',()=>chooseTrack(Number(b.dataset.index),true)));
+play.onclick=()=>{if(!audio.src||!tracks[activeTrack].url){document.getElementById('songTitle').textContent=tracks[activeTrack].title+' — أضف رابط الأغنية';return}if(audio.paused){audio.play().then(()=>{play.textContent='Ⅱ';visualizer.classList.add('playing')}).catch(()=>{});}else{audio.pause();play.textContent='▶';visualizer.classList.remove('playing')}};
+audio.ontimeupdate=()=>{seek.value=audio.duration?audio.currentTime/audio.duration*100:0;time.textContent=fmt(audio.currentTime)+' / '+fmt(audio.duration)};
+audio.onloadedmetadata=()=>time.textContent='0:00 / '+fmt(audio.duration);
+audio.onended=()=>{play.textContent='▶';visualizer.classList.remove('playing')};
+seek.oninput=()=>{if(audio.duration)audio.currentTime=seek.value/100*audio.duration};
+document.getElementById('back').onclick=()=>audio.currentTime=Math.max(0,audio.currentTime-10);
+document.getElementById('forward').onclick=()=>audio.currentTime=Math.min(audio.duration||0,audio.currentTime+10);
+document.getElementById('mute').onclick=e=>{audio.muted=!audio.muted;e.currentTarget.textContent=audio.muted?'🔇':'◖))'};
+let toastTimer;document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');const t=document.getElementById('toast');t.textContent=b.dataset.tip;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1500)});
 </script>
-
 </body>
 </html>
