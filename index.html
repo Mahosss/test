@@ -169,9 +169,17 @@ body.light-mode .account-line{color:#352719}
  .modal-box{padding:20px 15px}
 }
 
+
+/* أقسام إضافية ولمسات احترافية */
+.page-loader{position:fixed;inset:0;z-index:100;background:#050403;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .55s,visibility .55s;color:#e8c17c}.page-loader.hide{opacity:0;visibility:hidden}.loader-crown{font-size:48px;text-shadow:0 0 22px #d5a04b}.loader-name{font:58px "Great Vibes",cursive}.page-loader span{font-size:13px;color:#b99a68}
+.extras-wrap{position:relative;z-index:2;width:min(940px,calc(100% - 28px));margin:0 auto 35px;direction:rtl}.utility-bar{padding:13px 17px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:15px}.live-clock,.utility-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;color:#efd39b}.date-sep{opacity:.4}.visitor-count{font-size:13px}.utility-actions{gap:8px}.mini-btn{border:1px solid #a77b3c;background:linear-gradient(135deg,#2b2114,#090807);color:#f5d79f;border-radius:20px;padding:8px 13px;font:13px Tajawal;cursor:pointer;transition:.25s}.mini-btn:hover{background:#4a351b;transform:translateY(-2px);box-shadow:0 5px 16px #d5a04b22}.extra-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.extra-card{padding:19px 20px;min-width:0;scroll-margin-top:18px}.extra-card h2{font-size:21px;margin:0 0 12px;color:#f2d095}.extra-card p{line-height:1.9;color:#e6ddd0;margin:7px 0}.gold-quote{color:#e7bd77!important;border-right:2px solid #d5a04b;padding-right:12px}.status-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid #4d8156;background:#16351d55;color:#bce7c3;border-radius:20px;padding:6px 12px;font-size:13px}.status-pill i{width:7px;height:7px;border-radius:50%;background:#5bd879;box-shadow:0 0 9px #5bd879}.favorite-list{display:grid;gap:10px}.favorite-list div{display:flex;gap:10px;align-items:center;color:#e8bd78}.favorite-list span{color:#eee}.extra-card input,.extra-card textarea{width:100%;margin:5px 0;padding:10px 12px;border-radius:10px;border:1px solid #806034;background:#080706;color:#fff;font:14px Tajawal;outline:none;resize:vertical}.extra-card input:focus,.extra-card textarea:focus{border-color:#e1b35e;box-shadow:0 0 0 2px #d5a04b22}.guest-messages{display:grid;gap:8px;margin-top:12px}.guest-message{padding:10px;border:1px solid #8a652e66;border-radius:10px;background:#d5a04b0a}.guest-message b{color:#e8bd78}.guest-message p{margin:4px 0 0;font-size:13px;overflow-wrap:anywhere}.contact-links{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}.contact-link{color:#f2d095;text-decoration:none;border:1px solid #a77b3c;border-radius:18px;padding:7px 13px;font-size:13px}.extra-card small{color:#a99578}
+body.light-mode .extras-wrap .panel{background:linear-gradient(145deg,#fffaf0,#f0e1c8);color:#382918}body.light-mode .extra-card p,body.light-mode .favorite-list span{color:#493721}body.light-mode .extra-card input,body.light-mode .extra-card textarea{background:#fffaf0;color:#352719}body.light-mode .mini-btn{background:#f1dfc0;color:#493721}body.light-mode .contact-link{color:#6b4a20}
+@media(max-width:650px){.extras-wrap{width:calc(100% - 20px)}.extra-grid{grid-template-columns:1fr}.utility-bar{align-items:flex-start}.live-clock{font-size:13px}.utility-actions{width:100%;justify-content:space-between}.extra-card{padding:16px}.nav{max-width:340px;margin-left:auto;margin-right:auto}}
+
 </style>
 </head>
 <body>
+<div class="page-loader" id="pageLoader"><div class="loader-crown">♛</div><div class="loader-name">dahi</div><span>جاري تجهيز عالمك...</span></div>
 <div class="ambient"></div><div class="particles" id="particles"></div>
 <main class="shell">
  <section class="visual">
@@ -188,6 +196,10 @@ body.light-mode .account-line{color:#352719}
    <button class="active" data-action="home" data-tip="الرئيسية" aria-label="الرئيسية">⌂<span>الرئيسية</span></button>
    <button data-action="account" data-tip="حسابي" aria-label="حسابي">♟<span>حسابي</span></button>
    <button data-action="gallery" data-tip="الصور" aria-label="الصور">▣<span>الصور</span></button>
+   <button data-action="about" data-tip="نبذة عني" aria-label="نبذة عني">✦<span>نبذة عني</span></button>
+   <button data-action="favorites" data-tip="المفضلات" aria-label="المفضلات">♡<span>المفضلات</span></button>
+   <button data-action="guestbook" data-tip="دفتر الزوار" aria-label="دفتر الزوار">✉<span>دفتر الزوار</span></button>
+   <button data-action="contact" data-tip="تواصل معي" aria-label="تواصل معي">⌁<span>تواصل معي</span></button>
    <button data-action="theme" data-tip="الوضع الليلي" aria-label="تبديل الوضع الليلي">☾<span>الوضع الليلي</span></button>
   </nav>
  </section>
@@ -227,6 +239,20 @@ body.light-mode .account-line{color:#352719}
   </div>
  </section>
 </main>
+
+<section class="extras-wrap" id="extras">
+ <div class="utility-bar panel">
+  <div class="live-clock"><span>🕒</span><span id="clock">--:--</span><span class="date-sep">|</span><span id="todayDate">...</span></div>
+  <div class="utility-actions"><span class="visitor-count">👁 زياراتك: <b id="visitCount">1</b></span><button class="mini-btn" id="copyLink">نسخ رابط الصفحة</button><button class="mini-btn" id="sharePage">مشاركة</button></div>
+ </div>
+ <div class="extra-grid">
+  <article class="panel extra-card" id="aboutSection"><h2>✦ نبذة عني</h2><p>أنا dahi، شخص بحب البساطة والتميز، وبؤمن إن لكل شخص بصمته الخاصة. أحب التقنية واكتشاف كل جديد، وأستمتع بالتفاصيل الصغيرة اللي بتصنع فرق كبير.</p><p class="gold-quote">«كن أنت، فالعالم لا يحتاج نسخة أخرى»</p></article>
+  <article class="panel extra-card" id="statusSection"><h2>✧ حالتي الآن</h2><div class="status-pill"><i></i> متاح للتواصل</div><p id="statusText">الحياة أجمل لما نعيشها براحة بال وابتسامة.</p><button class="mini-btn" id="changeStatus">تغيير الحالة</button></article>
+  <article class="panel extra-card" id="favoritesSection"><h2>♡ المفضلات</h2><div class="favorite-list"><div>🎵 <span>الموسيقى الهادئة</span></div><div>🎬 <span>الأفلام والمسلسلات</span></div><div>💻 <span>التقنية والتكنولوجيا</span></div><div>✈️ <span>السفر واكتشاف الأماكن</span></div></div></article>
+  <article class="panel extra-card" id="guestbookSection"><h2>✉ دفتر الزوار</h2><p>سيب كلمة حلوة أو رسالة بسيطة لصاحب البروفايل.</p><form id="guestForm"><input id="guestName" maxlength="30" placeholder="اسمك" required><textarea id="guestMessage" maxlength="240" rows="3" placeholder="اكتب رسالتك هنا..." required></textarea><button class="mini-btn" type="submit">إرسال الرسالة</button></form><div id="guestMessages" class="guest-messages"></div></article>
+  <article class="panel extra-card" id="contactSection"><h2>⌁ تواصل معي</h2><p>يسعدني وجودك، تقدر تتواصل معايا من خلال الروابط التالية.</p><div class="contact-links"><a href="#" class="contact-link" data-placeholder>Facebook</a><a href="#" class="contact-link" data-placeholder>Instagram</a><a href="#" class="contact-link" data-placeholder>WhatsApp</a></div><small>استبدل علامة # بروابط حساباتك الحقيقية.</small></article>
+ </div>
+</section>
 
 <div class="modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
  <div class="modal-box"><button class="modal-close" data-close="accountModal" aria-label="إغلاق">×</button><h2 id="accountTitle">حسابي</h2>
@@ -280,9 +306,11 @@ document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',(
  if(action==='home'){window.scrollTo({top:0,behavior:'smooth'});showToast('أهلاً بك في الرئيسية')}
  if(action==='account')openModal('accountModal');
  if(action==='gallery')openModal('galleryModal');
+ const sectionMap={about:'aboutSection',favorites:'favoritesSection',guestbook:'guestbookSection',contact:'contactSection'};if(sectionMap[action]){document.getElementById(sectionMap[action]).scrollIntoView({behavior:'smooth',block:'center'});showToast(b.dataset.tip)}
  if(action==='theme'){
   document.body.classList.toggle('light-mode');
   const light=document.body.classList.contains('light-mode');
+  localStorage.setItem('dahi_theme',light?'light':'dark');
   b.innerHTML=light?'☀<span>الوضع الفاتح</span>':'☾<span>الوضع الليلي</span>';
   b.dataset.tip=light?'الوضع الفاتح':'الوضع الليلي';
   b.setAttribute('aria-label',light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح');
@@ -292,6 +320,24 @@ document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',(
 document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
 document.querySelectorAll('.modal-backdrop').forEach(backdrop=>backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal(backdrop.id)}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.show').forEach(m=>closeModal(m.id))});
+
+// الساعة والتاريخ
+function updateClock(){const now=new Date();document.getElementById('clock').textContent=now.toLocaleTimeString('ar-EG',{hour:'2-digit',minute:'2-digit'});document.getElementById('todayDate').textContent=now.toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}updateClock();setInterval(updateClock,30000);
+// عداد محلي لهذا المتصفح والجهاز فقط، وليس إجمالي زوار الموقع
+let visits=Number(localStorage.getItem('dahi_local_visits')||0)+1;localStorage.setItem('dahi_local_visits',visits);document.getElementById('visitCount').textContent=visits;
+// تذكر الوضع المختار
+if(localStorage.getItem('dahi_theme')==='light'){document.body.classList.add('light-mode');const themeBtn=document.querySelector('[data-action="theme"]');if(themeBtn){themeBtn.innerHTML='☀<span>الوضع الفاتح</span>';themeBtn.dataset.tip='الوضع الفاتح'}}
+// إخفاء شاشة التحميل
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('pageLoader').classList.add('hide'),450));
+// روابط الصفحة
+const pageUrl=location.href;document.getElementById('copyLink').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(pageUrl);showToast('تم نسخ رابط الصفحة')}catch(e){showToast('انسخ الرابط من شريط العنوان')}});
+document.getElementById('sharePage').addEventListener('click',async()=>{if(navigator.share){try{await navigator.share({title:'Dahi | البروفايل الشخصي',text:'زوروا البروفايل الشخصي',url:pageUrl})}catch(e){}}else{try{await navigator.clipboard.writeText(pageUrl);showToast('تم نسخ الرابط للمشاركة')}catch(e){showToast('المشاركة غير مدعومة في هذا المتصفح')}}});
+// دفتر الزوار: يخزن الرسائل محلياً في نفس المتصفح فقط. لعرضها لكل الزوار يلزم ربطه بقاعدة بيانات وخادم.
+const guestForm=document.getElementById('guestForm'),guestMessages=document.getElementById('guestMessages');let savedGuests=[];try{savedGuests=JSON.parse(localStorage.getItem('dahi_guest_messages')||'[]')}catch(e){}function renderGuests(){guestMessages.innerHTML='';savedGuests.slice(-5).reverse().forEach(item=>{const box=document.createElement('div');box.className='guest-message';const name=document.createElement('b');name.textContent=item.name;const msg=document.createElement('p');msg.textContent=item.message;box.append(name,msg);guestMessages.appendChild(box)})}renderGuests();guestForm.addEventListener('submit',e=>{e.preventDefault();const name=document.getElementById('guestName').value.trim(),message=document.getElementById('guestMessage').value.trim();if(!name||!message)return;savedGuests.push({name,message});savedGuests=savedGuests.slice(-30);localStorage.setItem('dahi_guest_messages',JSON.stringify(savedGuests));guestForm.reset();renderGuests();showToast('وصلت رسالتك، شكراً لك')});
+// تغيير الحالة من مجموعة عبارات جاهزة
+const statuses=['الحياة أجمل لما نعيشها براحة بال وابتسامة.','كل يوم فرصة لبداية أجمل.','الهدوء أسلوب حياة، والرضا سر السعادة.','اصنع لحظتك، ولا تنتظر الظروف المثالية.'];let statusIndex=0;document.getElementById('changeStatus').addEventListener('click',()=>{statusIndex=(statusIndex+1)%statuses.length;document.getElementById('statusText').textContent=statuses[statusIndex]});
+// الانتقال للأقسام من أزرار القائمة
+
 </script>
 </body>
 </html>
