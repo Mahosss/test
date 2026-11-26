@@ -45,7 +45,8 @@ linear-gradient(135deg,#090806,#020202 55%,#0d0905)}
 .details{direction:rtl;display:flex;flex-direction:column;gap:15px;padding:10px 8px 10px 14px;max-width:420px;width:100%;justify-self:center}
 .panel{position:relative;overflow:hidden;border:1px solid #9f743d;border-radius:23px;background:linear-gradient(145deg,rgba(17,15,12,.91),rgba(3,3,3,.93));box-shadow:0 15px 45px #0009,0 0 22px #c18a3b18,inset 0 0 22px #d7a44a08;backdrop-filter:blur(9px);animation:enterRight .9s cubic-bezier(.2,.8,.2,1) both}
 .panel:nth-child(2){animation-delay:.18s}
-.panel{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}\n.panel:hover{transform:translateY(-3px);border-color:#d3a35a;box-shadow:0 18px 48px #000b,0 0 28px #c18a3b2b,inset 0 0 22px #d7a44a0c}\n.panel:before{content:"";position:absolute;top:0;right:-80%;width:55%;height:1px;background:linear-gradient(90deg,transparent,#ffe4a8,transparent);animation:shine 6s ease-in-out infinite}
+.panel{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.panel:hover{transform:translateY(-3px);border-color:#d3a35a;box-shadow:0 18px 48px #000b,0 0 28px #c18a3b2b,inset 0 0 22px #d7a44a0c}\n.panel:before{content:"";position:absolute;top:0;right:-80%;width:55%;height:1px;background:linear-gradient(90deg,transparent,#ffe4a8,transparent);animation:shine 6s ease-in-out infinite}
 .panel:after{content:"";position:absolute;bottom:0;left:8%;right:8%;height:1px;background:linear-gradient(90deg,transparent,#f3cb7d,transparent);box-shadow:0 0 10px #e6b75e}
 .info{padding:18px 21px 19px}
 .panel h2{font-size:24px;color:#f2d095;margin:0 0 10px;padding-bottom:10px;border-bottom:1px solid #7f5c31;font-weight:700}
@@ -90,7 +91,8 @@ linear-gradient(135deg,#090806,#020202 55%,#0d0905)}
 @keyframes enterLeft{from{opacity:0;transform:translateX(-45px) scale(.94)}to{opacity:1;transform:translateX(0) scale(1)}}
 @keyframes enterRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
 @keyframes wave{from{height:4px}to{height:16px}}
-@media(min-width:801px){.shell{min-height:0;padding-top:38px;padding-bottom:38px}.visual{min-height:510px}.details{gap:14px}}\n@media(max-width:800px){
+@media(min-width:801px){.shell{min-height:0;padding-top:38px;padding-bottom:38px}.visual{min-height:510px}.details{gap:14px}}
+@media(max-width:800px){
  .shell{grid-template-columns:1fr;max-width:560px;padding:18px 14px}
  .visual{min-height:auto;padding:35px 5px 18px}
  .photo-stage{width:min(225px,62vw)}
@@ -109,6 +111,64 @@ linear-gradient(135deg,#090806,#020202 55%,#0d0905)}
  .panel h2{font-size:21px}.song-choice{padding:7px 9px}.song-choice-name{font-size:13px}
 }
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+
+/* تحسينات الموبايل والفواصل الذهبية */
+.info-row{position:relative;padding:7px 0 10px;min-height:0}
+.info-row:not(:last-child):after{content:"";position:absolute;bottom:0;right:41px;width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),var(--gold2),var(--gold),transparent);opacity:.85;box-shadow:0 0 7px #d5a04b55}
+.nav button{flex:0 0 auto}
+button:focus-visible{outline:2px solid var(--gold2);outline-offset:4px}
+.modal-backdrop{position:fixed;inset:0;z-index:20;background:#000b;backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:18px}
+.modal-backdrop.show{display:flex}
+.modal-box{width:min(440px,100%);max-height:min(82vh,680px);overflow:auto;position:relative;border:1px solid var(--gold);border-radius:22px;padding:22px;background:linear-gradient(145deg,#17130d,#050505);box-shadow:0 20px 70px #000c,0 0 25px #d5a04b22;color:#fff;animation:riseIn .25s ease both}
+.modal-box h2{margin:0 0 17px;color:#f2d095;font-size:24px}
+.modal-close{position:absolute;left:14px;top:12px;width:34px;height:34px;border:1px solid #a77b3c;border-radius:50%;background:#100d08;color:#f5d79f;font-size:20px;cursor:pointer}
+.account-line{padding:11px 2px;border-bottom:1px solid #d5a04b55;color:#eee;font-size:16px}
+.account-line:last-child{border:0}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.gallery-item{min-height:125px;border:1px solid #a77b3c;border-radius:13px;overflow:hidden;background:radial-gradient(circle at 30% 20%,#6b4a20,#17110a 65%,#050505);display:grid;place-items:center;color:#f2d095;text-align:center;padding:8px}
+.gallery-item img{width:100%;height:145px;object-fit:cover;display:block}
+.gallery-item span{font-size:13px;margin-top:5px}
+body.light-mode{color:#241b10;background:#f4ead8}
+body.light-mode:before{background:radial-gradient(ellipse at 18% 28%,#d7b47755,transparent 34%),radial-gradient(ellipse at 85% 70%,#c69a5a44,transparent 30%),linear-gradient(135deg,#fff8eb,#ead9bd 55%,#f7eddd)}
+body.light-mode .panel{background:linear-gradient(145deg,rgba(255,250,240,.96),rgba(245,232,210,.97));box-shadow:0 15px 35px #74501c22}
+body.light-mode .info-row .value,body.light-mode .song-title{color:#352719}
+body.light-mode .artist{color:#765f45}
+body.light-mode .song-choice{color:#382918;background:#7d5a2410;border-color:#8e693822}
+body.light-mode .controls button{color:#4b351d}
+body.light-mode .time{color:#604a2e}
+body.light-mode .modal-box{background:linear-gradient(145deg,#fff8eb,#ead9bd);color:#352719}
+body.light-mode .account-line{color:#352719}
+@media(max-width:800px){
+ .shell{display:flex;flex-direction:column;align-items:stretch;width:100%;padding:16px 13px 26px;gap:8px}
+ .visual{width:100%;padding:35px 4px 12px;min-height:0}
+ .details{width:100%;max-width:520px;margin:0 auto;padding:8px 0 18px;gap:13px}
+ .photo-stage{width:min(210px,58vw)}
+ .name{font-size:clamp(68px,17vw,88px)}
+ .nav{justify-content:center;flex-wrap:wrap;margin-top:24px;gap:12px}
+ .nav button{width:48px;height:48px}
+ .panel{width:100%}
+}
+@media(max-width:480px){
+ .shell{padding:12px 10px 22px}
+ .visual{padding-top:32px}
+ .photo-stage{width: min(190px,55vw)}
+ .crown{font-size:57px;top:-51px}
+ .name{font-size:76px}
+ .tagline{font-size:14px}
+ .nav{gap:10px;margin-top:22px}
+ .nav button{width:45px;height:45px;font-size:21px}
+ .info{padding:15px 14px}
+ .info-row{font-size:15px;gap:7px}
+ .info-row .emoji{width:26px;font-size:17px}
+ .info-row:not(:last-child):after{right:34px;width:42px}
+ .music{padding:15px 13px}
+ .cover{width:60px;height:60px}
+ .song-choice{min-height:42px}
+ .controls button{padding:9px;font-size:21px}
+ .controls .play{width:42px;height:42px}
+ .modal-box{padding:20px 15px}
+}
+
 </style>
 </head>
 <body>
@@ -125,11 +185,10 @@ linear-gradient(135deg,#090806,#020202 55%,#0d0905)}
    <div class="tagline">Dream Big .. Live Better</div>
   </div>
   <nav class="nav" aria-label="التنقل">
-   <button class="active" data-tip="الرئيسية" aria-label="الرئيسية">⌂<span>الرئيسية</span></button>
-   <button data-tip="حسابي" aria-label="حسابي">♟<span>حسابي</span></button>
-   <button data-tip="الألعاب" aria-label="الألعاب">🎮<span>الألعاب</span></button>
-   <button data-tip="الصور" aria-label="الصور">▣<span>الصور</span></button>
-   <button data-tip="الوضع الليلي" aria-label="الوضع الليلي">☾<span>الوضع الليلي</span></button>
+   <button class="active" data-action="home" data-tip="الرئيسية" aria-label="الرئيسية">⌂<span>الرئيسية</span></button>
+   <button data-action="account" data-tip="حسابي" aria-label="حسابي">♟<span>حسابي</span></button>
+   <button data-action="gallery" data-tip="الصور" aria-label="الصور">▣<span>الصور</span></button>
+   <button data-action="theme" data-tip="الوضع الليلي" aria-label="تبديل الوضع الليلي">☾<span>الوضع الليلي</span></button>
   </nav>
  </section>
  <section class="details">
@@ -168,6 +227,18 @@ linear-gradient(135deg,#090806,#020202 55%,#0d0905)}
   </div>
  </section>
 </main>
+
+<div class="modal-backdrop" id="accountModal" role="dialog" aria-modal="true" aria-labelledby="accountTitle">
+ <div class="modal-box"><button class="modal-close" data-close="accountModal" aria-label="إغلاق">×</button><h2 id="accountTitle">حسابي</h2>
+  <div class="account-line">👑 الاسم: dahi</div><div class="account-line">🇪🇬 البلد: مصر</div><div class="account-line">😎 المزاج: هادي ومركز</div><div class="account-line">💜 الحالة: أعزب ♡</div><div class="account-line">♑ البرج: الجدي</div><div class="account-line">🎮 الهوايات: التقنية، الألعاب، السفر</div>
+ </div>
+</div>
+<div class="modal-backdrop" id="galleryModal" role="dialog" aria-modal="true" aria-labelledby="galleryTitle">
+ <div class="modal-box"><button class="modal-close" data-close="galleryModal" aria-label="إغلاق">×</button><h2 id="galleryTitle">معرض الصور</h2>
+  <div class="gallery-grid"><div class="gallery-item"><img src="https://img.alfrsantv.com/img/f179043719406641.png" alt="الصورة الشخصية"><span>الصورة الشخصية</span></div><div class="gallery-item"><span>✦<br>مساحة لصورة جديدة</span></div><div class="gallery-item"><span>✧<br>مساحة لصورة جديدة</span></div><div class="gallery-item"><span>♛<br>مساحة لصورة جديدة</span></div></div>
+ </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <script>
 const particles=document.getElementById('particles');
@@ -199,7 +270,28 @@ seek.oninput=()=>{if(audio.duration)audio.currentTime=seek.value/100*audio.durat
 document.getElementById('back').onclick=()=>audio.currentTime=Math.max(0,audio.currentTime-10);
 document.getElementById('forward').onclick=()=>audio.currentTime=Math.min(audio.duration||0,audio.currentTime+10);
 document.getElementById('mute').onclick=e=>{audio.muted=!audio.muted;e.currentTarget.textContent=audio.muted?'🔇':'◖))'};
-let toastTimer;document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');const t=document.getElementById('toast');t.textContent=b.dataset.tip;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1500)});
+let toastTimer;
+function showToast(message){const t=document.getElementById('toast');t.textContent=message;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1700)}
+function openModal(id){document.getElementById(id).classList.add('show')}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>{
+ const action=b.dataset.action;
+ if(action!=='theme'){document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
+ if(action==='home'){window.scrollTo({top:0,behavior:'smooth'});showToast('أهلاً بك في الرئيسية')}
+ if(action==='account')openModal('accountModal');
+ if(action==='gallery')openModal('galleryModal');
+ if(action==='theme'){
+  document.body.classList.toggle('light-mode');
+  const light=document.body.classList.contains('light-mode');
+  b.innerHTML=light?'☀<span>الوضع الفاتح</span>':'☾<span>الوضع الليلي</span>';
+  b.dataset.tip=light?'الوضع الفاتح':'الوضع الليلي';
+  b.setAttribute('aria-label',light?'تفعيل الوضع الداكن':'تفعيل الوضع الفاتح');
+  showToast(light?'تم تفعيل الوضع الفاتح':'تم تفعيل الوضع الداكن');
+ }
+}));
+document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
+document.querySelectorAll('.modal-backdrop').forEach(backdrop=>backdrop.addEventListener('click',e=>{if(e.target===backdrop)closeModal(backdrop.id)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.show').forEach(m=>closeModal(m.id))});
 </script>
 </body>
 </html>
